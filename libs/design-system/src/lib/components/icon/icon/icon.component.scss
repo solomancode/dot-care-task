@@ -1,0 +1,15 @@
+.icon-container {
+  width: var(--Size-Medium);
+  height: var(--Size-Medium);
+  border-radius: var(--Radius-Small);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--BW-940);
+  img {
+    height: var(--Size-Small);
+  }
+  &.active {
+    background-color: var(--Primary-Default);
+  }
+}

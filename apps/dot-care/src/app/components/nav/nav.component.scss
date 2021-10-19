@@ -1,0 +1,16 @@
+:host {
+  padding: 0 var(--Size-Default);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--Size-Small) / 2) 0;
+}
+
+.nav-item {
+  background-color: var(--BW-980);
+  padding: calc(var(--Size-Small) / 2) var(--Size-Small);
+  border-radius: var(--Radius-Default);
+  border: none;
+}

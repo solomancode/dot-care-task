@@ -1,0 +1,43 @@
+.colors {
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.color {
+  height: 48px;
+  display: block;
+  margin: 1em 0;
+}
+
+.Primary-Default {
+  background-color: var(--Primary-Default);
+}
+
+.Primary-Light {
+  background-color: var(--Primary-Light);
+}
+
+.Primary-Dark {
+  background-color: var(--Primary-Dark);
+}
+
+.BW-800 {
+  background-color: var(--BW-800);
+}
+
+.BW-980 {
+  background-color: var(--BW-980);
+}
+
+.BW-940 {
+  background-color: var(--BW-940);
+}
+
+.Button-Active {
+  background-color: var(--Button-Active);
+}
+
+.Button-Default {
+  background-color: var(--Button-Default);
+}

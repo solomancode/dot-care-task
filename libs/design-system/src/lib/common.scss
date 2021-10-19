@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--Font-Size-Default);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+:root {
+  --Primary-Default: #56d8c5;
+  --Primary-Dark: #14211f;
+  --Primary-Light: #f0fffd;
+
+  --BW-800: #cbcbcb;
+  --BW-980: #fbfbfb;
+  --BW-940: #f0f0f0;
+
+  --Button-Active: #14211f;
+  --Button-Default: #6f6f6f;
+
+  --Shadow-Default: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
+    0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.06);
+
+  --Radius-Default: 12px;
+  --Radius-Small: 4px;
+
+  --Size-Default: 48px;
+  --Size-Medium: 32px;
+  --Size-Small: 18px;
+
+  --Font-Weight-Default: 400;
+  --Font-Weight-Bold: 700;
+
+  --Font-Size-Default: 14px;
+  --Font-Size-Paragraph: var(--Font-Size-Default);
+}

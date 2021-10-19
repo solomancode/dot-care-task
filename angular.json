@@ -6,6 +6,7 @@
       "root": "libs/design-system",
       "sourceRoot": "libs/design-system/src",
       "prefix": "dot-care",
+      "assets": ["./assets"],
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -44,9 +45,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/design-system-docs/src/favicon.ico",
-              "apps/design-system-docs/src/assets"
+              "apps/design-system-docs/src/assets",
+              {
+                "input": "libs/design-system/src/assets",
+                "glob": "**/*",
+                "output": "assets/shared"
+              }
             ],
-            "styles": ["apps/design-system-docs/src/styles.scss"],
+            "styles": [
+              "libs/design-system/src/lib/common.scss",
+              "apps/design-system-docs/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -163,9 +172,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/dot-care/src/favicon.ico",
-              "apps/dot-care/src/assets"
+              "apps/dot-care/src/assets",
+              {
+                "input": "libs/design-system/src/assets",
+                "glob": "**/*",
+                "output": "assets/shared"
+              }
             ],
-            "styles": ["apps/dot-care/src/styles.scss"],
+            "styles": [
+              "libs/design-system/src/lib/common.scss",
+              "apps/dot-care/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

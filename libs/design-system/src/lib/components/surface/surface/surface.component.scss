@@ -1,0 +1,8 @@
+.surface {
+  display: inline-block;
+}
+
+.shadow {
+  box-shadow: var(--Shadow-Default);
+  border-radius: var(--Radius-Default);
+}

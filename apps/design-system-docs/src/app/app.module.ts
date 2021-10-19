@@ -5,9 +5,12 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
 import { DesignSystemModule } from '@dot-care/design-system';
+import { ColorPaletteComponent } from './components/color-palette/color-palette.component';
+import { SectionComponent } from './components/section/section.component';
+import { PreviewComponent } from './components/preview/preview.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ColorPaletteComponent, SectionComponent, PreviewComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
