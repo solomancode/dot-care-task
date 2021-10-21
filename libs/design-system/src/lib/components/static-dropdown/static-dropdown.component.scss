@@ -1,0 +1,29 @@
+.drop-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: var(--Size-Default);
+  border: none;
+  padding: 0 12px;
+  box-sizing: border-box;
+  background-color: var(--BW-980);
+  box-shadow: var(--Shadow-Default);
+  .arrow-down {
+    transform: scale(0.35);
+    position: relative;
+    top: 1px;
+    transition: all 0.2s ease;
+  }
+  &.open {
+    text-decoration: underline;
+    .arrow-down {
+      transform: scale(0.35) rotate(180deg);
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+}

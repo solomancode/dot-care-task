@@ -1,0 +1,17 @@
+:host {
+  background-color: var(--BW-980);
+  height: 100vh;
+  display: block;
+}
+
+.app-view {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  .content-view {
+    display: flex;
+    margin-top: 12px;
+  }
+}

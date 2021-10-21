@@ -1,17 +1,21 @@
 <dot-care-surface>
   <nav>
-    <button class="nav-item">
-      <dot-care-icon-label
-        active
-        icon="Warehouse"
-        label="Inventory Management"
-      ></dot-care-icon-label>
-    </button>
-    <button class="nav-item">
-      <dot-care-icon-label
-        icon="Warehouse"
-        label="Inventory Management"
-      ></dot-care-icon-label>
-    </button>
+    <dot-care-icon-label
+      class="nav-item"
+      routerLink=""
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      icon="Dashboard"
+      label="Dashboard"
+    >
+    </dot-care-icon-label>
+    <dot-care-icon-label
+      class="nav-item"
+      routerLink="inventory"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      icon="Warehouse"
+      label="Inventory Management"
+    ></dot-care-icon-label>
   </nav>
 </dot-care-surface>

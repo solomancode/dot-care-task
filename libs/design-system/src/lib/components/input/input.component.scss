@@ -1,0 +1,26 @@
+.text {
+  color: var(--Primary-Dark);
+  font-size: var(--Font-Input-Label);
+  font-weight: var(--Font-Weight-Bold);
+  padding: 0 8px;
+  margin: 0 8px;
+  position: absolute;
+  top: -0.8em;
+  background-color: var(--BW-980);
+}
+
+.label {
+  display: flex;
+  position: relative;
+}
+
+input {
+  border: 1px solid var(--BW-800);
+  border-radius: var(--Radius-Small);
+  width: 100%;
+  padding: 1em;
+  &:focus {
+    border-color: var(--Primary-Default);
+    outline: 1px solid var(--Primary-Default);
+  }
+}

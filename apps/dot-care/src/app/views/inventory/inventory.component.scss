@@ -1,0 +1,16 @@
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin: 2em 0;
+}
+
+.filter {
+  cursor: pointer;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--BW-800);
+  border-radius: var(--Radius-Small);
+  background-color: var(--BW-980);
+}

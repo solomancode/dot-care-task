@@ -1,0 +1,24 @@
+.search-input {
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid var(--BW-800);
+  padding: 1em 0;
+  width: 100%;
+  font-size: var(--Font-Size-Label);
+  &:focus {
+    border-bottom: 2px solid var(--Primary-Default);
+    outline: none;
+  }
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  .icon {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

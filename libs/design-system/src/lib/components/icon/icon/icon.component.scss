@@ -12,4 +12,7 @@
   &.active {
     background-color: var(--Primary-Default);
   }
+  &.transparent {
+    background-color: transparent;
+  }
 }

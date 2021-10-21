@@ -1,0 +1,94 @@
+{
+  "items": {
+    "total_count": 100,
+    "start": 1,
+    "offset": 5,
+    "data": [
+      {
+        "id": 1,
+        "Name": "ESSENTIO™ MRI",
+        "CategoryId": 1,
+        "Stock": [
+          {
+            "WarehouseId": 1,
+            "Balance": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "Name": "100G QSFP28 Direct Attach Copper Cable",
+        "CategoryId": 2,
+        "Stock": [
+          {
+            "WarehouseId": 1,
+            "Balance": 5
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "Name": " Cavit™ Temporary Filling Material",
+        "CategoryId": 3,
+        "Stock": [
+          {
+            "WarehouseId": 2,
+            "Balance": 10
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "Name": "High Protection Surgical Gown, Reinforced, XLarge",
+        "CategoryId": 4,
+        "Stock": [
+          {
+            "WarehouseId": 2,
+            "Balance": 5
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "Name": "Active Knit Knee Stabilizer",
+        "CategoryId": 5,
+        "Stock": [
+          {
+            "WarehouseId": 1,
+            "Balance": 50
+          },
+          {
+            "WarehouseId": 2,
+            "Balance": 50
+          }
+        ]
+      }
+    ]
+  },
+  "warehouse": [
+    { "id": 1, "Name": "Tiger Lake" },
+    { "id": 2, "Name": "Grand Canyon" }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "Name": "Medical Imaging"
+    },
+    {
+      "id": 2,
+      "Name": "Electronic Components"
+    },
+    {
+      "id": 3,
+      "Name": "Dental"
+    },
+    {
+      "id": 4,
+      "Name": "Surgical Supplies"
+    },
+    {
+      "id": 5,
+      "Name": "Braces & Supports"
+    }
+  ]
+}

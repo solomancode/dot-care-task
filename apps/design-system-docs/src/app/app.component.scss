@@ -6,6 +6,7 @@
   min-width: 300px;
   max-width: 600px;
   margin: 50px auto;
+  position: relative;
 }
 
 .icons-grid {
@@ -24,10 +25,15 @@
 
 .previews > * {
   border-bottom: 1px dashed #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
+}
+
+.padding {
+  padding: 1em;
 }

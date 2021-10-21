@@ -1,0 +1,41 @@
+<label class="label">
+  <section>
+    <span class="text">{{ label }}</span>
+    <section (click)="$event.preventDefault()" class="selected">
+      <ul class="tokens" *ngIf="selected.size">
+        <li class="token" *ngFor="let item of selected">
+          <span>{{ item.label }}</span>
+          <button (click)="deselect(item)" class="clear-item">×</button>
+        </li>
+      </ul>
+      <p class="placeholder" *ngIf="selected.size === 0">{{ placeholder }}</p>
+      <button (click)="showOptions()" class="drop-toggle">
+        <svg
+          width="15"
+          height="8"
+          viewBox="0 0 15 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.87009 7.07107L14.9412 0L0.799027 -1.19209e-06L7.87009 7.07107Z"
+            fill="#14211F"
+          />
+        </svg>
+      </button>
+    </section>
+  </section>
+
+  <section *ngIf="open">
+    <span (click)="dismiss($event)" class="dismiss-area"></span>
+    <ul (click)="$event.stopPropagation()" class="options">
+      <li
+        class="option"
+        *ngFor="let item of items"
+        (click)="select(item, $event)"
+      >
+        {{ item.label }}
+      </li>
+    </ul>
+  </section>
+</label>

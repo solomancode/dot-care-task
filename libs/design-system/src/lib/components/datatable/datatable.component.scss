@@ -1,0 +1,17 @@
+.pages {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.page-button {
+  border: 1px solid var(--BW-800);
+  background-color: transparent;
+  border-radius: var(--Radius-Small);
+  margin: 0 2px;
+  cursor: pointer;
+  &.selected {
+    border-color: var(--Primary-Default);
+    background-color: var(--Primary-Light);
+  }
+}

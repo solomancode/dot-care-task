@@ -1,13 +1,16 @@
+:host(.active) .icon-label > .label {
+  color: var(--Button-Active);
+}
+
 .icon-label {
   display: flex;
   align-items: center;
   font-weight: var(--Font-Weight-Bold);
+  cursor: pointer;
 
   > .label {
     margin: 0 8px;
+    display: inline-block;
     color: var(--Button-Default);
-    &.active {
-      color: var(--Button-Active);
-    }
   }
 }

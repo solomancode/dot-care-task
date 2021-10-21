@@ -13,15 +13,12 @@ export class IconComponent {
   static DefaultExtension = '.svg';
 
   @Input() icon: Icon = NOT_SET;
-  @Input() active = NOT_SET;
-
-  isActive() {
-    return this.active !== NOT_SET;
-  }
+  @Input() active = false;
+  @Input() transparent = false;
 
   get src() {
     if (this.icon === 'NOT_SET') return '';
-    const is_active = this.isActive() ? '.active' : '.default';
+    const is_active = this.active ? '.active' : '.default';
     return (
       IconComponent.BaseURL +
       this.icon +

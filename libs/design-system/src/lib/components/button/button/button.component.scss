@@ -1,3 +1,14 @@
 button {
-  color: var(--Primary-Default);
+  color: var(--BW-100);
+  padding: 0.9em 1.2em;
+  width: 100%;
+  border: 2px solid var(--Primary-Dark);
+  border-radius: var(--Radius-Small);
+  background-color: var(--Primary-Default);
+  font-weight: var(--Font-Weight-Bold);
+  cursor: pointer;
+  box-shadow: var(--Shadow-Default);
+  &:hover {
+    border-color: var(--BW-430);
+  }
 }

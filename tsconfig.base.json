@@ -14,8 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
-      "@dot-care/design-system": ["libs/design-system/src/index.ts"]
+      "@dot-care/data-access/*": ["libs/data-access/src/lib/*"],
+      "@dot-care/design-system": ["libs/design-system/src/index.ts"],
+      "@dot-care/utils/*": ["libs/utils/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

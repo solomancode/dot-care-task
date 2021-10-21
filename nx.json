@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "data-access": {
+      "tags": []
+    },
     "design-system": {
       "tags": []
     },
@@ -43,6 +46,9 @@
     "dot-care-e2e": {
       "tags": [],
       "implicitDependencies": ["dot-care"]
+    },
+    "utils": {
+      "tags": []
     }
   }
 }

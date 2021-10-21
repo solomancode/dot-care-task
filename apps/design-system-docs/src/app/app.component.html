@@ -5,24 +5,29 @@
 <hr />
 <dot-care-section title="Icons">
   <section class="icons-grid">
-    <dot-care-preview title="Warehouse Active">
-      <dot-care-icon active icon="Warehouse"></dot-care-icon>
-    </dot-care-preview>
-    <dot-care-preview title="Warehouse Default">
-      <dot-care-icon icon="Warehouse"></dot-care-icon>
-    </dot-care-preview>
+    <section *ngFor="let icon of icons">
+      <dot-care-preview title="{{ icon }} Active">
+        <dot-care-icon [active]="true" [icon]="icon"></dot-care-icon>
+      </dot-care-preview>
+      <dot-care-preview title="{{ icon }} Default">
+        <dot-care-icon [icon]="icon"></dot-care-icon>
+      </dot-care-preview>
+    </section>
   </section>
 </dot-care-section>
 <hr />
 <dot-care-section title="Components">
   <section class="previews">
     <dot-care-preview title="Surface">
-      <dot-care-surface>...</dot-care-surface>
+      <dot-care-surface>
+        <article [ngStyle]="{ width: '100px', height: '100px' }"></article>
+      </dot-care-surface>
     </dot-care-preview>
+
     <section class="row">
-      <dot-care-preview title="Icon Label Active">
+      <dot-care-preview title="Icon Label set 'active' class">
         <dot-care-icon-label
-          active
+          class="active"
           icon="Warehouse"
           label="Inventory Management"
         ></dot-care-icon-label>
@@ -34,6 +39,67 @@
         ></dot-care-icon-label>
       </dot-care-preview>
     </section>
+
+    <dot-care-article heading="Dot Care Systems.">
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. At alias
+        quidem animi esse in labore corrupti qui magnam adipisci beatae
+        explicabo quisquam, nihil modi saepe deserunt repellendus quos atque
+        officiis.
+      </p>
+    </dot-care-article>
+    <dot-care-breadcrumbs
+      [fragments]="[
+        { label: 'dashboard', href: '' },
+        { label: 'inventory', href: 'inventory' }
+      ]"
+    ></dot-care-breadcrumbs>
+    <dot-care-input
+      label="Item Name"
+      placeholder="Enter Item Name"
+    ></dot-care-input>
+
+    <dot-care-dropdown
+      label="Item Category"
+      placeholder="Select Item Category"
+      [items]="[
+        { label: 'option 1', value: 1 },
+        { label: 'option 2', value: 2 },
+        { label: 'option 3', value: 3 }
+      ]"
+    ></dot-care-dropdown>
+
+    <section>
+      <dot-care-modal (dismiss)="onDismiss()" [open]="openModal">
+        <dot-care-surface>
+          <section class="padding">
+            <h2>Color Palette</h2>
+            <dot-care-color-palette></dot-care-color-palette>
+          </section>
+        </dot-care-surface>
+      </dot-care-modal>
+      <button (click)="toggleModal()">toggle modal</button>
+    </section>
+    <dot-care-datatable
+      (changePage)="onPageChanged($event)"
+      title="Developers"
+      [currentPage]="2"
+      [pages]="110"
+      [rows]="[
+        { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+        { name: 'Dany', gender: 'Male', company: 'KFC' },
+        { name: 'Molly', gender: 'Female', company: 'Burger King' }
+      ]"
+      [columns]="[{ prop: 'name' }, { name: 'Gender' }, { name: 'Company' }]"
+    ></dot-care-datatable>
+    <dot-care-master-search
+      placeholder="Search for Product, Patient, Reservation ..."
+    ></dot-care-master-search>
+    <dot-care-static-dropdown icon="User" label="Ibn al-Haytham">
+      <p>sample content 1</p>
+      <p>sample content 2</p>
+      <p>sample content 3</p>
+    </dot-care-static-dropdown>
   </section>
 </dot-care-section>
 <!-- <dot-care-button></dot-care-button> -->

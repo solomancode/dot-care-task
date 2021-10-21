@@ -12,4 +12,27 @@
   >
     <path d="M48 0H0L48 48V0Z" fill="#56D8C5" />
   </svg>
+  <section class="user">
+    <dot-care-static-dropdown icon="User" label="Ibn al-Haytham">
+      <section class="user-menu">
+        <button class="user-menu-item">
+          <dot-care-icon [transparent]="true" icon="Globe"></dot-care-icon>
+          <span class="text">العربية</span>
+        </button>
+        <button class="user-menu-item">
+          <dot-care-icon [transparent]="true" icon="Lock"></dot-care-icon>
+          <span class="text">Sign Out</span>
+        </button>
+      </section>
+    </dot-care-static-dropdown>
+  </section>
+  <section class="aux-header">
+    <nav class="breadcrumbs">
+      <dot-care-breadcrumbs [fragments]="fragments"></dot-care-breadcrumbs>
+    </nav>
+    <dot-care-master-search
+      class="master-search"
+      placeholder="Search for Product, Patient, Reservation ..."
+    ></dot-care-master-search>
+  </section>
 </header>

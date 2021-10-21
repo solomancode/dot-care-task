@@ -1,0 +1,13 @@
+.fragment {
+  color: var(--BW-430);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.slash {
+  padding: 0 0.5em;
+  color: var(--BW-800);
+}

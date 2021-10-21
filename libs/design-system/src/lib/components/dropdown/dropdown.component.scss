@@ -1,0 +1,108 @@
+.text {
+  color: var(--Primary-Dark);
+  font-size: var(--Font-Input-Label);
+  font-weight: var(--Font-Weight-Bold);
+  padding: 0 8px;
+  margin: 0 8px;
+  position: absolute;
+  top: -0.8em;
+  background-color: var(--BW-980);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.drop-toggle {
+  cursor: pointer;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  margin-left: -38px;
+  border: none;
+  background-color: transparent;
+}
+
+.options {
+  background-color: var(--BW-980);
+  border-radius: var(--Radius-Small);
+  width: 100%;
+  margin: 0;
+  top: 100%;
+  position: absolute;
+  border: 1px solid var(--Primary-Default);
+  padding: 0.6em 0;
+  z-index: 9999999;
+
+  .option {
+    cursor: pointer;
+    font-weight: var(--Font-Weight-Bold);
+    padding: 0.6em 1em;
+    margin: 0 0.6em;
+    border-radius: var(--Radius-Small);
+    &:hover {
+      text-decoration: underline;
+      background-color: var(--Primary-Default);
+    }
+  }
+}
+
+.dismiss-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+}
+
+.selected {
+  border: 1px solid var(--BW-800);
+  border-radius: var(--Radius-Small);
+  width: 100%;
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  .placeholder {
+    flex-grow: 1;
+    margin: 0;
+  }
+  &:focus {
+    border-color: var(--Primary-Default);
+    outline: 1px solid var(--Primary-Default);
+  }
+}
+
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 102%;
+  align-items: center;
+  .token {
+    background-color: var(--BW-100);
+    color: var(--BW-980);
+    text-indent: 0.6em;
+    padding: 0.2em 0;
+    border-radius: var(--Radius-Small);
+    margin: 1px;
+    display: flex;
+    align-items: center;
+  }
+  .clear-item {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    color: var(--BW-980);
+    padding: 0 0.4em;
+    cursor: pointer;
+    color: var(--Primary-Default);
+    &::hover {
+      display: none;
+    }
+  }
+}

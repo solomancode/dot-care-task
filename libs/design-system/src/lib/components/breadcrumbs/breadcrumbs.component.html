@@ -1,0 +1,6 @@
+<nav class="fragments">
+  <ng-template ngFor [ngForOf]="fragments" let-frag let-i="index">
+    <span *ngIf="i !== 0" class="slash">/</span>
+    <a class="fragment" [routerLink]="frag.href">{{ frag.label }}</a>
+  </ng-template>
+</nav>

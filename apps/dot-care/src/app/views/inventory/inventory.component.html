@@ -1,0 +1,38 @@
+<article>
+  <header class="header">
+    <h3>Inventory Items</h3>
+    <section class="filter-grid">
+      <dot-care-input
+        label="Name"
+        placeholder="Enter Item Name"
+      ></dot-care-input>
+      <dot-care-dropdown
+        placeholder="Select Category"
+        label="Category"
+        [items]="categories"
+      ></dot-care-dropdown>
+      <dot-care-dropdown
+        placeholder="Select Warehouse"
+        label="Warehouse"
+        [items]="warehouses"
+      ></dot-care-dropdown>
+      <dot-care-dropdown
+        [multiSelect]="false"
+        label="Balance Operator"
+        [items]="balanceOperators"
+        [placeholder]="balanceOperators[0].label"
+      ></dot-care-dropdown>
+      <dot-care-input
+        label="Balance"
+        placeholder="0"
+        type="number"
+      ></dot-care-input>
+      <dot-care-button>Filter</dot-care-button>
+    </section>
+  </header>
+  <dot-care-datatable
+    [rows]="rows"
+    [columns]="columns"
+    [pages]="pages"
+  ></dot-care-datatable>
+</article>

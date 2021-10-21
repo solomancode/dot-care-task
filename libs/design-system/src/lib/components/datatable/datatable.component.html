@@ -1,0 +1,23 @@
+<ngx-datatable [rows]="rows" [columns]="columns"> </ngx-datatable>
+<ul class="pages">
+  <li>
+    <button (click)="setPage(currentPage - 1)" class="page-button">
+      Prev.
+    </button>
+  </li>
+  <li *ngFor="let page of pagesList; let i = index">
+    <button
+      class="page-button"
+      [class.selected]="currentPage === i + 1"
+      (click)="setPage(i + 1)"
+    >
+      {{ i + 1 }}
+    </button>
+  </li>
+  <li *ngIf="pages > 10">
+    <button class="page-button">...</button>
+  </li>
+  <li>
+    <button (click)="setPage(currentPage + 1)" class="page-button">Next</button>
+  </li>
+</ul>

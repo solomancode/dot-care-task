@@ -1,0 +1,8 @@
+:host {
+  max-width: calc(100% - var(--Size-Default));
+}
+
+.description {
+  font-size: var(--Font-Size-Paragraph);
+  line-height: 1.4em;
+}

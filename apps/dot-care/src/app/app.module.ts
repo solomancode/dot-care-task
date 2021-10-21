@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { LogoComponent } from './components/logo/logo.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavComponent } from './components/nav/nav.component';
-import { DesignSystemModule } from '@dot-care/design-system';
+import { RoutingModule } from './routing/routing.module';
+import { BreadcrumbsFragmentModule } from '@dot-care/utils/breadcrumbs-fragment/breadcrumbs-fragment.module';
 
 @NgModule({
-  declarations: [AppComponent, LogoComponent, HeaderComponent, NavComponent],
-  imports: [BrowserModule, DesignSystemModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, RoutingModule, BreadcrumbsFragmentModule],
   providers: [],
   bootstrap: [AppComponent],
 })

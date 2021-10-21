@@ -1,0 +1,13 @@
+<button (click)="toggle()" class="drop-toggle" [class.open]="open">
+  <dot-care-icon [transparent]="true" [icon]="icon"></dot-care-icon>
+  {{ label }}
+  <dot-care-icon
+    [transparent]="true"
+    class="arrow-down"
+    icon="ArrowDown"
+  ></dot-care-icon>
+</button>
+
+<section *ngIf="open" class="content">
+  <ng-content></ng-content>
+</section>
