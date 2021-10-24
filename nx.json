@@ -47,6 +47,9 @@
       "tags": [],
       "implicitDependencies": ["dot-care"]
     },
+    "firebase": {
+      "tags": []
+    },
     "utils": {
       "tags": []
     }

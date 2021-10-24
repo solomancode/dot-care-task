@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryItemsService } from '@dot-care/data-access/inventory/inventory-items.service';
-
-type TODO = any;
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  Category,
+  FlatItem,
+  ItemQueryObject,
+  Warehouse,
+} from '@dot-care/@types';
+import { InventoryDataService } from '@dot-care/data-access/inventory/inventory-data.service';
+import { InventoryLocalQueryService } from '@dot-care/data-access/inventory/inventory-local-query.service';
+import { aggregateLookupId } from '@dot-care/utils/operators/aggregateLookupId';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { map, mergeMap, scan } from 'rxjs/operators';
 
 @Component({
   selector: 'dot-care-inventory',
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.scss'],
+  providers: [InventoryLocalQueryService],
 })
 export class InventoryComponent implements OnInit {
-  pages = 0;
-  total_count = 0;
-
-  rows = [];
+  form!: FormGroup;
 
   columns = [
     { prop: 'Name' },
@@ -27,62 +34,133 @@ export class InventoryComponent implements OnInit {
     { value: '>', label: 'Greater Than' },
   ];
 
-  warehouses: TODO = [];
-  categories: TODO = [];
+  constructor(
+    private inventoryDataService: InventoryDataService,
+    private query: InventoryLocalQueryService,
+    private fb: FormBuilder
+  ) {}
 
-  constructor(private inventoryService: InventoryItemsService) {}
-
-  formatItemsData(data: TODO) {
-    const map_warehouse: TODO = {};
-    const map_category: TODO = {};
-    this.warehouses.map((wh: TODO) => {
-      map_warehouse[wh.value] = wh.label;
-    });
-    this.categories.map((cat: TODO) => {
-      map_category[cat.value] = cat.label;
-    });
-    const rows: TODO = [];
-    for (const item of data as TODO) {
-      item.Stock.forEach((s: TODO) => {
-        rows.push({
+  items: Observable<FlatItem[]> = this.inventoryDataService.items.pipe(
+    map((response) => response.data),
+    mergeMap((items) =>
+      items.map((item) =>
+        item.Stock.map((Stock) => ({
+          id: item.id,
           Name: item.Name,
-          category: map_category[item.CategoryId],
-          warehouse: map_warehouse[s.WarehouseId],
-          balance: s.Balance,
-        });
-      });
-    }
-    return rows;
+          CategoryId: item.CategoryId,
+          Stock,
+        }))
+      )
+    ),
+    scan((a, n) => {
+      return [...a, ...n];
+    })
+  );
+
+  categories = this.inventoryDataService.categories;
+  categoriesDropdown = this.categories.pipe(
+    map((categories) =>
+      categories.map((category) => ({
+        label: category.Name,
+        value: category.id,
+      }))
+    )
+  );
+  categoriesLookup: Observable<Record<number, Category>> = this.categories.pipe(
+    aggregateLookupId()
+  );
+
+  warehouses = this.inventoryDataService.warehouses;
+  warehousesDropdown = this.warehouses.pipe(
+    map((warehouses) =>
+      warehouses.map((warehouse) => ({
+        label: warehouse.Name,
+        value: warehouse.id,
+      }))
+    )
+  );
+  warehousesLookup: Observable<Record<number, Warehouse>> =
+    this.warehouses.pipe(aggregateLookupId());
+
+  currentQuery = new BehaviorSubject<Partial<ItemQueryObject>>({});
+
+  itemsPrePage = 3;
+  currentPage = new BehaviorSubject(0);
+  total_pages = this.inventoryDataService.items.pipe(
+    map((items) => Math.ceil(items.total_count / this.itemsPrePage))
+  );
+
+  rows = combineLatest([
+    this.items,
+    this.categoriesLookup,
+    this.warehousesLookup,
+    this.currentQuery,
+    this.currentPage,
+  ]).pipe(
+    map(([items, categoriesLookup, warehousesLookup, query, currentPage]) => {
+      const _rows = [];
+      const start = currentPage * this.itemsPrePage;
+      const currentSpan = items.slice(start, start + this.itemsPrePage);
+      for (const item of currentSpan) {
+        if (this.query.match(item, query)) {
+          const row = {
+            Name: item.Name,
+            category: categoriesLookup[item.CategoryId].Name,
+            warehouse: warehousesLookup[item.Stock.WarehouseId].Name,
+            balance: item.Stock.Balance,
+          };
+          _rows.push(row);
+        }
+      }
+      return _rows;
+    })
+  );
+
+  fuzzyOptions = this.rows.pipe(map((items) => items.map((item) => item.Name)));
+
+  async loadInventoryData() {
+    this.inventoryDataService.loadInventoryItems();
+    this.inventoryDataService.loadCategories();
+    this.inventoryDataService.loadWarehouses();
   }
 
-  formatWarehousesData(data: TODO) {
-    this.warehouses = data.map((warehouse: TODO) => ({
-      value: warehouse.id,
-      label: warehouse.Name,
-    }));
+  linkQueryUpdates() {
+    this.form.valueChanges.subscribe((value) => {
+      const query: Partial<ItemQueryObject> = {};
+      if (value.Name.trim().length) {
+        query.Name = value.Name;
+      }
+      if (value.SelectedCategories.size > 0) {
+        query.CategoryId = [...value.SelectedCategories].map(
+          (item) => item.value
+        );
+      }
+      if (value.SelectedWarehouses.size > 0) {
+        query.WarehouseId = [...value.SelectedWarehouses].map(
+          (item) => item.value
+        );
+      }
+      if (value.BalanceOperator.size === 1 && value.Balance !== null) {
+        const [operator] = [...value.BalanceOperator];
+        query.Balance = [operator.value, parseInt(value.Balance)];
+      }
+      this.currentQuery.next(query);
+    });
   }
 
-  formatCategoriesData(data: TODO) {
-    this.categories = data.map((category: TODO) => ({
-      value: category.id,
-      label: category.Name,
-    }));
-  }
-
-  async populateInventoryItems() {
-    const [categories, warehouses, items] = await Promise.all([
-      this.inventoryService.listCategories(),
-      this.inventoryService.listWarehouseDetails(),
-      this.inventoryService.listInventoryItems(),
-    ]);
-    this.formatCategoriesData(categories);
-    this.formatWarehousesData(warehouses);
-    this.rows = this.formatItemsData(items.data);
-    this.total_count = items.total_count;
-    this.pages = items.total_count / (items.offset - items.start);
+  setupQueryForm() {
+    this.form = this.fb.group({
+      Name: '',
+      SelectedCategories: new Set([]),
+      SelectedWarehouses: new Set([]),
+      BalanceOperator: new Set([]),
+      Balance: null,
+    });
+    this.linkQueryUpdates();
   }
 
   ngOnInit() {
-    this.populateInventoryItems();
+    this.loadInventoryData();
+    this.setupQueryForm();
   }
 }

@@ -1,27 +1,52 @@
-import { Component, DoCheck, EventEmitter, Input, Output } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-interface DropdownItem<T> {
+export interface DropdownItem<T> {
   label: string;
   value: T;
 }
+
+type SelectedItems<T> = Set<DropdownItem<T>>;
 
 @Component({
   selector: 'dot-care-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DropdownComponent),
+      multi: true,
+    },
+  ],
 })
-export class DropdownComponent {
+export class DropdownComponent<T> implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() type = 'text';
   @Input() multiSelect = true;
-  @Input() items: DropdownItem<unknown>[] = [];
 
-  @Output() update = new EventEmitter<Set<DropdownItem<unknown>>>();
+  @Input() items: DropdownItem<T>[] = [];
 
-  selected: Set<DropdownItem<unknown>> = new Set();
+  selected: SelectedItems<T> = new Set();
 
   open = false;
+
+  publish = (value: SelectedItems<T>) => value;
+
+  writeValue(selected: SelectedItems<T>): void {
+    if (selected instanceof Set) {
+      this.selected = selected;
+    }
+  }
+
+  registerOnChange(fn: (value: SelectedItems<T>) => SelectedItems<T>): void {
+    this.publish = fn;
+  }
+
+  registerOnTouched(): void {
+    // throw new Error('Method not implemented.');
+  }
 
   dismiss(event: Event) {
     event.preventDefault();
@@ -32,16 +57,16 @@ export class DropdownComponent {
     this.open = true;
   }
 
-  select(item: DropdownItem<unknown>, event: Event) {
+  select(item: DropdownItem<T>, event: Event) {
     event.preventDefault();
     this.multiSelect
       ? this.selected.add(item)
       : (this.selected = new Set([item]));
-    this.update.emit(this.selected);
+    this.publish(this.selected);
   }
 
-  deselect(item: DropdownItem<unknown>) {
+  deselect(item: DropdownItem<T>) {
     this.selected.delete(item);
-    this.update.emit(this.selected);
+    this.publish(this.selected);
   }
 }

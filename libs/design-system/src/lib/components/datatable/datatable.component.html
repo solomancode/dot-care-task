@@ -8,8 +8,8 @@
   <li *ngFor="let page of pagesList; let i = index">
     <button
       class="page-button"
-      [class.selected]="currentPage === i + 1"
-      (click)="setPage(i + 1)"
+      [class.selected]="currentPage === i"
+      (click)="setPage(i)"
     >
       {{ i + 1 }}
     </button>

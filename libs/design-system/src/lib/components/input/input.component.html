@@ -1,4 +1,31 @@
 <label class="label">
   <span class="text">{{ label }}</span>
-  <input [placeholder]="placeholder" [type]="type" />
+  <input
+    (change)="onValueChange($event)"
+    [placeholder]="placeholder"
+    [type]="type"
+    [value]="value"
+  />
+  <button (click)="fuzzyMode = true" *ngIf="fuzzyOptions" class="fuzzy-icon">
+    <dot-care-icon icon="Magnifier" [transparent]="true"></dot-care-icon>
+  </button>
+  <dot-care-modal (dismiss)="fuzzyMode = false" [open]="fuzzyMode">
+    <section class="fuzzy-container">
+      <input
+        (input)="fuzzySearch($event)"
+        class="fuzzy-input"
+        type="text"
+        [placeholder]="placeholder"
+        [value]="value"
+        autofocus
+      />
+      <ul class="recommendations-list">
+        <li *ngFor="let option of recommendations">
+          <button (click)="selectOption(option)" class="option">
+            {{ option }}
+          </button>
+        </li>
+      </ul>
+    </section>
+  </dot-care-modal>
 </label>

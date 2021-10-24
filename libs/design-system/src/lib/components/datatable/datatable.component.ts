@@ -19,7 +19,7 @@ export class DatatableComponent implements DoCheck {
   }
 
   setPage(page: number) {
-    if (page <= 0 || page >= this.pages) return;
+    if (page < 0 || page >= this.pages) return;
     this.currentPage = page;
     this.changePage.emit(this.currentPage);
   }

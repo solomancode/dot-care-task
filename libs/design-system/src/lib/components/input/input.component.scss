@@ -12,15 +12,62 @@
 .label {
   display: flex;
   position: relative;
+  align-items: stretch;
 }
 
 input {
   border: 1px solid var(--BW-800);
   border-radius: var(--Radius-Small);
   width: 100%;
-  padding: 1em;
+  height: var(--Input-Height);
+  padding: 0 1em;
   &:focus {
     border-color: var(--Primary-Default);
     outline: 1px solid var(--Primary-Default);
+  }
+}
+
+.fuzzy-icon {
+  border: 1px solid var(--Primary-Default);
+  margin: 0 -1px;
+  border-radius: var(--Radius-Small);
+  padding: 0;
+  box-shadow: var(--Shadow-Default);
+  background-color: var(--BW-980);
+  cursor: pointer;
+}
+
+.fuzzy-container {
+  width: 50vw;
+  align-items: flex-start;
+  top: var(--Size-Default);
+  background-color: transparent;
+  position: absolute;
+  left: 25vw;
+  .fuzzy-input {
+    font-size: 2em;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em 0.5em;
+  }
+}
+
+.recommendations-list {
+  width: 100%;
+  background-color: var(--BW-980);
+  border-radius: var(--Radius-Small);
+  box-shadow: var(--Shadow-Default);
+  padding: 0.5em 0;
+  .option {
+    font-weight: var(--Font-Weight-Bold);
+    cursor: pointer;
+    padding: 5px 20px;
+    margin: 10px 0;
+    display: flex;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    justify-content: flex-start;
+    font-size: 1.1em;
   }
 }

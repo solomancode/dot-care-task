@@ -1,15 +1,16 @@
 {
   "items": {
-    "total_count": 100,
+    "total_count": 5,
     "start": 1,
     "offset": 5,
     "data": [
       {
         "id": 1,
-        "Name": "ESSENTIO™ MRI",
+        "Name": "ESSENTIO MRI",
         "CategoryId": 1,
         "Stock": [
           {
+            "SKU": "ESSENTIO-1",
             "WarehouseId": 1,
             "Balance": 1
           }
@@ -17,10 +18,11 @@
       },
       {
         "id": 2,
-        "Name": "100G QSFP28 Direct Attach Copper Cable",
+        "Name": "Direct Attach Copper Cable",
         "CategoryId": 2,
         "Stock": [
           {
+            "SKU": "Cable-1",
             "WarehouseId": 1,
             "Balance": 5
           }
@@ -28,10 +30,11 @@
       },
       {
         "id": 3,
-        "Name": " Cavit™ Temporary Filling Material",
+        "Name": "Cavit Temporary Filling Material",
         "CategoryId": 3,
         "Stock": [
           {
+            "SKU": "Cavit-2",
             "WarehouseId": 2,
             "Balance": 10
           }
@@ -43,6 +46,7 @@
         "CategoryId": 4,
         "Stock": [
           {
+            "SKU": "Gown-3",
             "WarehouseId": 2,
             "Balance": 5
           }
@@ -54,10 +58,12 @@
         "CategoryId": 5,
         "Stock": [
           {
+            "SKU": "Knee-5",
             "WarehouseId": 1,
             "Balance": 50
           },
           {
+            "SKU": "Knee-6",
             "WarehouseId": 2,
             "Balance": 50
           }
@@ -65,7 +71,7 @@
       }
     ]
   },
-  "warehouse": [
+  "warehouses": [
     { "id": 1, "Name": "Tiger Lake" },
     { "id": 2, "Name": "Grand Canyon" }
   ],

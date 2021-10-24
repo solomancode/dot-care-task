@@ -307,6 +307,31 @@
         }
       }
     },
+    "firebase": {
+      "projectType": "library",
+      "root": "libs/firebase",
+      "sourceRoot": "libs/firebase/src",
+      "prefix": "dot-care",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/firebase"],
+          "options": {
+            "jestConfig": "libs/firebase/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/firebase/src/**/*.ts",
+              "libs/firebase/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "utils": {
       "projectType": "library",
       "root": "libs/utils",

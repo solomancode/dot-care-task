@@ -13,16 +13,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-}
-
-.drop-toggle {
-  cursor: pointer;
-  align-self: center;
-  width: 32px;
-  height: 32px;
-  margin-left: -38px;
-  border: none;
-  background-color: transparent;
+  min-height: var(--Input-Height);
 }
 
 .options {
@@ -58,18 +49,33 @@
   background-color: transparent;
   width: 100vw;
   height: 100vh;
+  z-index: 99999;
 }
 
 .selected {
-  border: 1px solid var(--BW-800);
-  border-radius: var(--Radius-Small);
   width: 100%;
-  padding: 0.5em 1em;
   display: flex;
-  align-items: center;
+  .drop-toggle {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--Primary-Default);
+    margin: 0 -1px;
+    border-radius: var(--Radius-Small);
+    background-color: transparent;
+    box-shadow: var(--Shadow-Default);
+    height: var(--Input-Height);
+  }
   .placeholder {
+    display: flex;
+    align-items: center;
     flex-grow: 1;
     margin: 0;
+    padding: 0 1em;
+    border: 1px solid var(--BW-800);
+    border-radius: var(--Radius-Small);
+    height: var(--Input-Height);
+    color: var(--BW-430);
   }
   &:focus {
     border-color: var(--Primary-Default);
@@ -80,16 +86,20 @@
 .tokens {
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
   margin: 0;
-  width: 102%;
   align-items: center;
+  border: 1px solid var(--Primary-Default);
+  border-radius: var(--Radius-Small);
+  padding: 6px 4px;
+  max-width: 30em;
   .token {
     background-color: var(--BW-100);
     color: var(--BW-980);
     text-indent: 0.6em;
     padding: 0.2em 0;
     border-radius: var(--Radius-Small);
-    margin: 1px;
+    margin: 2px;
     display: flex;
     align-items: center;
   }

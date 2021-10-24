@@ -1,38 +1,57 @@
 <article>
   <header class="header">
     <h3>Inventory Items</h3>
-    <section class="filter-grid">
+    <form [formGroup]="form" class="filter-grid">
       <dot-care-input
+        [fuzzyOptions]="fuzzyOptions | async"
         label="Name"
         placeholder="Enter Item Name"
+        formControlName="Name"
       ></dot-care-input>
+
       <dot-care-dropdown
+        formControlName="SelectedCategories"
+        *ngIf="categoriesDropdown | async as cat; else loadingCategories"
         placeholder="Select Category"
         label="Category"
-        [items]="categories"
+        [items]="cat"
       ></dot-care-dropdown>
+      <ng-template #loadingCategories>Loading Categories...</ng-template>
+
       <dot-care-dropdown
+        formControlName="SelectedWarehouses"
+        *ngIf="warehousesDropdown | async as warh; else loadingWarehouses"
         placeholder="Select Warehouse"
         label="Warehouse"
-        [items]="warehouses"
+        [items]="warh"
       ></dot-care-dropdown>
+      <ng-template #loadingWarehouses>Loading Warehouses...</ng-template>
+
       <dot-care-dropdown
+        formControlName="BalanceOperator"
         [multiSelect]="false"
         label="Balance Operator"
         [items]="balanceOperators"
-        [placeholder]="balanceOperators[0].label"
+        placeholder="Select Operator"
       ></dot-care-dropdown>
+
       <dot-care-input
+        formControlName="Balance"
         label="Balance"
         placeholder="0"
         type="number"
       ></dot-care-input>
+
       <dot-care-button>Filter</dot-care-button>
-    </section>
+    </form>
   </header>
   <dot-care-datatable
-    [rows]="rows"
+    *ngIf="total_pages | async as pg; else loadingItems"
+    [rows]="rows | async"
     [columns]="columns"
-    [pages]="pages"
+    [pages]="pg"
+    [currentPage]="(currentPage | async) || 0"
+    (changePage)="currentPage.next($event)"
   ></dot-care-datatable>
+  <ng-template #loadingItems>Loading Items...</ng-template>
 </article>

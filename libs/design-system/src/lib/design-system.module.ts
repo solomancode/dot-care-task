@@ -14,9 +14,15 @@ import { RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MasterSearchComponent } from './components/master-search/master-search.component';
 import { StaticDropdownComponent } from './components/static-dropdown/static-dropdown.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgxDatatableModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgxDatatableModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     ButtonComponent,
     SurfaceComponent,
